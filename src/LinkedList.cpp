@@ -10,63 +10,63 @@
  LinkedList::LinkedList() : head(nullptr) {}
  
  LinkedList::~LinkedList() {
-     clear();
+    clear();
  }
  
  /**
   * Inserts new node at the beginning of the list.
   */
  void LinkedList::push_front(int value) {
-     Node* new_node = new Node(value);
-     new_node->next = head;
-     head = new_node;
+    Node* new_node = new Node(value);
+    new_node->next = head;
+    head = new_node;
  }
  
  /**
   * Appends new node to the end of the list.
   */
  void LinkedList::push_back(int value) {
-     Node* new_node = new Node(value);
-     if(!head) {
-         head = new_node;
-         return;
-     }
-     Node* temp = head;
-     while(temp->next) {
-         temp = temp->next;
-     }
-     temp->next = new_node;
+    Node* new_node = new Node(value);
+    if(!head){
+        head = new_node;
+        return;
+    }
+    Node* temp = head;
+    while(temp->next){
+        temp = temp->next;
+    }
+    temp->next = new_node;
  }
  
  /**
   * Inserts node at specified position. Throws if invalid index.
   */
  void LinkedList::insert_at(int index, int value) {
-     if(index < 0) throw std::out_of_range("Index out of range");
+    if(index < 0) throw std::out_of_range("Index out of range");
  
-     if(index == 0) {
-         push_front(value);
-         return;
-     }
+    if(index == 0){
+       push_front(value);
+       return;
+    }
  
-     Node* temp = head;
-     for(int i = 0; i < index - 1 && temp; ++i) {
-         temp = temp->next;
-     }
+    Node* temp = head;
+    for(int i = 0; i < index - 1 && temp; ++i){
+        temp = temp->next;
+    }
  
-     if(!temp) throw std::out_of_range("Index out of range");
+    if(!temp) throw std::out_of_range("Index out of range");
  
-     Node* new_node = new Node(value);
-     new_node->next = temp->next;
-     temp->next = new_node;
+    Node* new_node = new Node(value);
+    new_node->next = temp->next;
+    temp->next = new_node;
  }
  
  //removes first element
  void LinkedList::pop_front() {
-     if(!head) return;
-     Node* temp = head;
-     head = head->next;
-     delete temp;
+    if(!head) return;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
  }
  
  /**
@@ -74,59 +74,59 @@
   * Handles empty and single-element cases.
   */
  void LinkedList::pop_back() {
-     if(!head) return;
-     if(!head->next) {
-         delete head;
-         head = nullptr;
-         return;
-     }
+    if(!head) return;
+    if(!head->next){
+       delete head;
+       head = nullptr;
+       return;
+    }
  
-     Node* temp = head;
-     while(temp->next->next) {
-         temp = temp->next;
-     }
+    Node* temp = head;
+    while(temp->next->next){
+       temp = temp->next;
+    }
  
-     delete temp->next;
-     temp->next = nullptr;
+    delete temp->next;
+    temp->next = nullptr;
  }
  
  /**
   * Removes node at specified index. Throws if invalid.
   */
  void LinkedList::remove_at(int index) {
-     if(index < 0) throw std::out_of_range("Index out of range");
-     if(!head) throw std::runtime_error("List is empty");
+    if(index < 0) throw std::out_of_range("Index out of range");
+    if(!head) throw std::runtime_error("List is empty");
  
-     if(index == 0) {
-         pop_front();
-         return;
-     }
+    if(index == 0){
+        pop_front();
+        return;
+    }
  
-     Node* temp = head;
-     for(int i = 0; i < index - 1 && temp; ++i) {
-         temp = temp->next;
-     }
+    Node* temp = head;
+    for(int i = 0; i < index - 1 && temp; ++i){
+        temp = temp->next;
+    }
  
-     if(!temp || !temp->next) throw std::out_of_range("Index out of range");
+    if(!temp || !temp->next) throw std::out_of_range("Index out of range");
  
-     Node* node_to_remove = temp->next;
-     temp->next = node_to_remove->next;
-     delete node_to_remove;
+    Node* node_to_remove = temp->next;
+    temp->next = node_to_remove->next;
+    delete node_to_remove;
  }
  
  /**
   * Returns value at specified index. Throws if out of bounds.
   */
  int LinkedList::at(int index) const {
-     if(index < 0) throw std::out_of_range("Index out of range");
+    if(index < 0) throw std::out_of_range("Index out of range");
  
-     Node* temp = head;
-     for(int i = 0; i < index && temp; ++i) {
-         temp = temp->next;
-     }
+    Node* temp = head;
+    for(int i = 0; i < index && temp; ++i){
+        temp = temp->next;
+    }
  
-     if(!temp) throw std::out_of_range("Index out of range");
-     return temp->data;
+    if(!temp) throw std::out_of_range("Index out of range");
+    return temp->data;
  }
  
 /**
@@ -137,7 +137,7 @@ void LinkedList::reverse() {
     Node* prev = nullptr;
     Node* current = head;
 
-    while(current) {
+    while(current){
         Node* next_node = current->next;
         current->next = prev;
         prev = current;
@@ -151,7 +151,7 @@ void LinkedList::reverse() {
 int LinkedList::size() const {
     int count = 0;
     Node* temp = head;
-    while(temp) {
+    while(temp){
         ++count;
         temp = temp->next;
     }
@@ -168,7 +168,7 @@ bool LinkedList::is_empty() const {
  */
 void LinkedList::clear() {
     Node* temp = head;
-    while(temp) {
+    while(temp){
         Node* next = temp->next;
         delete temp;
         temp = next;
@@ -181,7 +181,7 @@ void LinkedList::clear() {
  */
 void LinkedList::print() const {
     Node* temp = head;
-    while(temp) {
+    while(temp){
         std::cout << temp->data << " -> ";
         temp = temp->next;
     }
@@ -205,7 +205,7 @@ int LinkedList::pop_front() {
 int LinkedList::pop_back() {
     if(is_empty()) throw std::underflow_error("List is empty");
     
-    if(length == 1) {
+    if(length == 1){
         int value = head->data;
         delete head;
         head = nullptr;
