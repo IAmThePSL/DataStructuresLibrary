@@ -1,4 +1,5 @@
-#pragma once
+#ifndef QUEUE_HPP
+#define QUEUE_HPP
 #include "LinkedList.hpp"
 
 class Queue {
@@ -15,3 +16,5 @@ public:
 	int size() const;
 	void print() const;
 };
+
+#endif
