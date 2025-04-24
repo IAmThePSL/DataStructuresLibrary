@@ -10,7 +10,7 @@ void Queue::enqueue(int val) {
 
 void Queue::dequeue() {
     if (is_empty()) throw std::runtime_error("Queue is empty");
-    list.pop_front();
+    list.pop_and_return_front();
 }
 
 int Queue::front() const {
