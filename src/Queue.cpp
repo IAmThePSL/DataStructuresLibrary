@@ -1,3 +1,33 @@
+/**
+ * Queue Implementation (Using Singly Linked List)
+ * 
+ * This file implements a FIFO queue using a LinkedList internally, with the following:
+ * 
+ *  DATA MEMBERS:
+ *  - LinkedList list: Underlying list that stores queue elements.
+ * 
+ *  BASIC OPERATIONS:
+ *  - enqueue(value): Add an element to the back of the queue.
+ *  - dequeue(): Remove the element from the front of the queue.
+ *  - front(): Return the element at the front without removing it.
+ * 
+ *  INSPECTION & INFO:
+ *  - is_empty(): Check if the queue is empty.
+ *  - size(): Return the number of elements in the queue.
+ *  - contains(value): Check if a value exists in the queue.
+ * 
+ *  TRANSFORMATIONS:
+ *  - clear(): Reset the queue to empty.
+ *  - reverse(): Reverse the order of elements in the queue.
+ *  - equals(other): Check if two queues are identical in content and order.
+ *  - clone(): Return a deep copy of the queue.
+ *  - to_vector(): Return a std::vector of the queue's elements.
+ * 
+ *  EXTRAS:
+ *  - enqueue_front(value): Add an element to the front (like a deque).
+ *  - print(): Print the queue from front to back.
+ */
+
 #include "Queue.hpp"
 #include <stdexcept>
 #include <iostream>
