@@ -7,6 +7,12 @@
  *  - Node* head: Points to the first node in the list.
  *  - int length: Tracks the number of elements in the list.
  * 
+ *  CONSTRUCTORS & ASSIGNMENT:
+ *  - LinkedList(): Default constructor.
+ *  - LinkedList(const LinkedList& other): Copy constructor (deep copy).
+ *  - operator=(const LinkedList& other): Copy assignment operator (deep copy).
+ *  - ~LinkedList(): Destructor that clears the list.
+ * 
  *  BASIC OPERATIONS:
  *  - push_front(value): Insert a node at the beginning.
  *  - push_back(value): Insert a node at the end.
@@ -16,6 +22,7 @@
  *  - remove_at(index): Remove a node at a specific index.
  *  - at(index): Return the value at a given index.
  *  - set_at(index, value): Update value at a specific index.
+ *  - remove_value(value): Remove the first occurrence of the given value.
  * 
  *  INSPECTION & INFO:
  *  - find(value): Return the index of first occurrence of value.
@@ -27,7 +34,8 @@
  *  - reverse(): Reverse the linked list in-place.
  *  - clone(): Return a deep copy of the list.
  *  - equals(other): Check if two lists have identical contents.
- *  - clear(): Delete all nodes.
+ *  - clear(): Delete all nodes and reset list.
+ *  - to_vector(): Return the contents of the list as a std::vector.
  *  - print(): Output the list to std::cout.
  */
 #include "LinkedList.hpp"
@@ -38,6 +46,30 @@ LinkedList::LinkedList(): head(nullptr), length(0) {}
 
 LinkedList::~LinkedList(){
     clear();
+}
+
+//copy constructor
+LinkedList::LinkedList(const LinkedList& other) : head(nullptr), length(0) {
+    Node* curr = other.head;
+    while(curr){
+        push_back(curr->data);
+        curr = curr->next;
+    }
+}
+
+//copy assignment
+LinkedList& LinkedList::operator=(const LinkedList& other){
+    if(this == &other) return *this; //self assignment check
+
+    clear(); //clear current list
+
+    Node* curr = other.head;
+    while(curr){
+        push_back(curr->data);
+        curr = curr->next;
+    }
+
+    return *this;
 }
 
 //inserts at the front
