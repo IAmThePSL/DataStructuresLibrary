@@ -18,9 +18,9 @@ public:
     void clear();                    //reset stack
     bool contains(int value) const;  //check value existence
     bool equals(const Stack& other) const;//compare stacks
-    Stack clone() const;	     //clone stack
-    void reverse();                  //reverse stack
-    std::vector<int> to_vector() const;//convert stack to std::vector<T>
+	Stack clone() const;			 //clone stack
+	void reverse();					 //reverse stack
+	std::vector<int> to_vector() const;//convert stack to std::vector<T>
 };
 
 #endif
