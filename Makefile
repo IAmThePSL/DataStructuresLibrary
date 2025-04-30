@@ -2,25 +2,24 @@ CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude
 
 SRC_DIR := src
-INC_DIR := include
-BIN_DIR := bin
+OBJ_DIR := obj
+BIN := main
 
 SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
-OBJECTS := $(SOURCES:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
-TARGET := $(BIN_DIR)/main
+OBJECTS := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
 
-all: $(TARGET)
+all: $(BIN)
 
-$(TARGET): $(OBJECTS) | $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+$(BIN): $(OBJECTS) main.cpp | $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) main.cpp $(OBJECTS) -o $(BIN)
 
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BIN_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
-	rm -rf $(BIN_DIR)
+	rm -rf $(OBJ_DIR) $(BIN)
 
 .PHONY: all clean
